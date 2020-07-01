@@ -1,0 +1,44 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the isValid function below.
+def isValid(s):
+    mydict = {}
+    for i in s:
+        mydict[i] = mydict.get(i, 0) +1
+    twocount = False
+    freq = mydict[s[0]]
+    print(freq)
+    for k in mydict:
+        if mydict[k] !=freq:
+            if (mydict[k] == freq+1) and not twocount:
+                twocount = True
+            if (mydict[k] != freq + 1):
+                if (mydict[k] == 1) and not twocount:
+                    twocount = True
+                else:
+                    return "NO"
+
+    return "YES"
+            
+
+            
+        
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = isValid(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
