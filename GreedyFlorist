@@ -1,0 +1,51 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the getMinimumCost function below.
+def getMinimumCost(k, c):
+    friends = {}
+    num_friends = k - 1
+    cost = 0
+    numflowers = len(c)
+    while num_friends >= 0:
+        friends[num_friends] = 0
+        num_friends -=1
+    c = sorted(c, reverse = True)
+
+    for i in range(numflowers):
+       
+        flower_cost = c[i]*(1+friends.get(i%k))
+        print(flower_cost)
+        friends[i%k] = friends.get(i%k) + 1
+        
+        cost += flower_cost
+    return cost
+    
+
+
+    
+
+    
+        
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nk = input().split()
+
+    n = int(nk[0])
+
+    k = int(nk[1])
+
+    c = list(map(int, input().rstrip().split()))
+
+    minimumCost = getMinimumCost(k, c)
+
+    fptr.write(str(minimumCost) + '\n')
+
+    fptr.close()
