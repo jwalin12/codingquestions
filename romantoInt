@@ -1,0 +1,42 @@
+class Solution {
+    public int romanToInt(String s) {
+        
+        Map <Character, Integer> symbols = new HashMap<Character, Integer>();
+        symbols.put('I', 1);
+        symbols.put('V',5);
+        symbols.put('X', 10);
+        symbols.put('L', 50);
+        symbols.put('C', 100);
+        symbols.put('D', 500);
+        symbols.put('M', 1000);
+        
+
+        
+        char before;
+        char curr;
+        int val = symbols.get(s.charAt(0));
+        
+        for (int i = 1; i < s.length(); i++){
+            before = s.charAt(i-1);
+            curr = s.charAt(i);
+            
+                if (before == 'I' && (curr =='V' || curr =='X')){
+                    val -=2;
+                    }
+                
+                if (before == 'X' && (curr == 'L' || curr == 'C')){
+                    val -=20;
+                    }
+                    
+                if (before == 'C' && (curr == 'D' || curr == 'M')){
+                    val -= 200;
+                    }
+                val += symbols.get(curr);
+                    
+        }
+            
+    return val; 
+        
+    }
+                    
+}
